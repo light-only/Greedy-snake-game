@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        #map{
+            width: 400px;
+            height: 400px;
+            background-color: #000;
+            position: relative;
+        }
+    </style>
+    
+</head>
+<body>
+    <h1 id="grade">分数:0</h1>
+    <div id="map"></div>
+    <script type="module">
+import Game from './game.js'
+let map = document.querySelector('#map');
+let game = new Game(map,10);
+
+let gradeEl = document.querySelector('#grade');
+game.on('changegrade',(grade)=>{
+    gradeEl.innerHTML = '分数'+ game.grade
+});
+game.on('over',()=>{
+    alert('游戏结束');
+}) 
+game.on('win',()=>{
+    alert('胜利了');
+}) 
+document.onclick = function(){
+    game.start();
+}
+
+    </script>
+</body>
+</html>
